@@ -40,6 +40,7 @@
     },
   };
 
+  // eslint-disable-next-line no-unused-vars
   const settings = {
     amountWidget: {
       defaultValue: 1,
@@ -168,30 +169,26 @@
             // reduce price variable
               price -= option.price;
             }
-            const optionImage = thisProduct.imageWrapper.querySelector(.paramId-optionId);   
           }
+
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId); 
           if(optionImage) {
             if(optionSelected) {
-              optionImage.classList.add.classNames(menuProduct.imageVisible);             
+              optionImage.classList.add(classNames.menuProduct.imageVisible);             
             } else {
-              optionImage.classList.add.classNames(menuProduct.imageVisible);
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
-          }
-        }       
-        // update calculated price in the HTML
-        thisProduct.priceElem.innerHTML = price;
-      }
-    }  
+          }       
+          // update calculated price in the HTML
+          thisProduct.priceElem.innerHTML = price;
+        }
+      } 
+    } 
     
-    initAmountWidget(){
-      const thisProduct = this;
-
-      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-
-    }
+  
   }
 
-  class AmountWidget{
+  class AmountWidget {
     constructor(element){
       const thisWidget = this;
       //console.log('AmountWidget:', thisWidget);
@@ -214,9 +211,6 @@
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
 
-      if(thisWidget.value !== newValue){
-        thisWidget.value = newValue;
-      }
       if(thisWidget.value !== newValue && !isNaN(newValue)){
         thisWidget.value = newValue;
       }
