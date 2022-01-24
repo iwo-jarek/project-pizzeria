@@ -91,6 +91,7 @@
       const thisProduct = this;
       thisProduct.id = id;
       thisProduct.data = data;
+      
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
@@ -176,14 +177,23 @@
 
     addToCart(){
       const thisProduct = this;
-
+      console.log;
       //app.cart.add(thisProduct);
       app.cart.add(thisProduct.prepareCartProduct());
     }
 
     prepareCartProduct(){
       const thisProduct = this;
-
+      const productSummary = {};
+      productSummary.id = thisProduct.id;
+      productSummary.name = thisProduct.data.name;
+      productSummary.amount = thisProduct.amountWidget.value;
+      productSummary.price = thisProduct.price;
+      productSummary.params = thisProduct.prepareCartProductParams();
+      return productSummary;
+    }
+    /*prepareCartProduct(){
+      const thisProduct = this;
       const productSummary = {};
       productSummary.id = thisProduct.id;
       productSummary.name = thisProduct.data.name;
@@ -193,7 +203,7 @@
       productSummary.params = thisProduct.prepareCartProductParams();
       return productSummary;
     }
-
+    */
     prepareCartProductParams() {
       const thisProduct = this;
     
@@ -266,20 +276,20 @@
               optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }  
-
-          thisProduct.priceSingle = price;
-          // update calculated price in the HTML
-          thisProduct.priceElem.innerHTML = price;
-        }   
+        }
         /* multiply price by amount */
-        price *= thisProduct.amountWidget.value;
       } 
+      thisProduct.priceSingle = price;
+      price *= thisProduct.amountWidget.value;
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
     }   
   }
 
   class AmountWidget {
     constructor(element){
       const thisWidget = this;
+      
       //console.log('AmountWidget:', thisWidget);
       //console.log('constructor arguments:', element);
       thisWidget.getElements(element);
@@ -331,13 +341,14 @@
     }
   }
 
+
   class Cart{
     constructor(element){
       const thisCart = this;
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-
+      
       console.log('new Cart', thisCart);
     }
 
