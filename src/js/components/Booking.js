@@ -112,7 +112,7 @@ class Booking{
       thisBooking.booked[date][hourBlock].push(table);  
     }    
   }
-
+  
   updateDOM(){
     const thisBooking = this;
 
@@ -131,7 +131,6 @@ class Booking{
 
     for(let table of thisBooking.dom.tables){
       let tableId = table.getAtrribute(settings.booking.tableIdAttribute);
-      
       if(!isNaN(tableId)){
         tableId = parseInt(tableId);
       }
@@ -170,9 +169,7 @@ class Booking{
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function(){
-      thisBooking.updateDOM();
-    });
+  
 
     thisBooking.dom.peopleAmount.addEventListener('updated', function(){
     });
