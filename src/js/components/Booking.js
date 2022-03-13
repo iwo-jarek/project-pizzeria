@@ -148,6 +148,15 @@ class Booking{
     }
   }
 
+  initTables(){
+    const thisBooking = this;
+    thisBooking.addEventListener('click', function(event){
+      event.preventDefault();
+      
+    });
+
+  }
+
   render(element){
     const thisBooking = this;
     const generatedHTML = templates.bookingWidget();
@@ -159,6 +168,7 @@ class Booking{
     thisBooking.dom.datePicker = element.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = element.querySelector(select.widgets.hourPicker.wrapper);
     thisBooking.dom.tables = element.querySelectorAll(select.booking.tables);
+    thisBooking.dom.floorPlan = element.querySelector(select.booking.floorPlan);
   }
 
   initWidgets(){
@@ -171,6 +181,10 @@ class Booking{
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
+    });
+
+    thisBooking.dom.floorPlan.addEventListener('click', function(){
+      thisBooking.initTables();
     });
 
     thisBooking.dom.peopleAmount.addEventListener('updated', function(){

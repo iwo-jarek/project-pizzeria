@@ -128,6 +128,7 @@ class Product{
 
   prepareCartProduct(){
     const thisProduct = this;
+    console.log(thisProduct.amountWidget);
     const productSummary = {};
     productSummary.id = thisProduct.id;
     productSummary.name = thisProduct.data.name;
