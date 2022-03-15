@@ -44,7 +44,15 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     floorPlan: '.floor-plan',
+    form: '.booking-form',
+    submitForm: '.booking-form [type="submit"]',
+    starters: '[name="starter"]',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+
+
   },
+
   nav: {
     links: '.main-nav a',
   },
@@ -80,6 +88,8 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    table: 'table',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
