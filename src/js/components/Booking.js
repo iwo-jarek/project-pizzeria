@@ -169,6 +169,10 @@ class Booking {
       this.Booking.removeSelected();
 
     }
+    thisBooking.dom.submitForm.addEventListener('click', function(event) {
+      event.preventDefault();
+      thisBooking.sendOrder();
+    });
   }
 
   removeSelected() {
@@ -249,6 +253,7 @@ class Booking {
     thisBooking.dom.floorPlan.addEventListener('click', function (event) {
       thisBooking.initTables(event);
     });
+    
   }
 }
 
