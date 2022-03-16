@@ -49,8 +49,6 @@ export const select = {
     starters: '[name="starter"]',
     phone: '[name="phone"]',
     address: '[name="address"]',
-
-
   },
 
   nav: {

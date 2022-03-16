@@ -151,15 +151,23 @@ class Booking {
   initTables(event) {
     const thisBooking = this;
 
-    const idTable = event.target;
-    if (idTable.classList.contains(classNames.booking.table)) {
-      if (!idTable.classList.contains(classNames.booking.tableBooked)) {
-        let selectedTable = document.querySelector(classNames.booking.tableSelected);
-        if (selectedTable !== null && selectedTable !== idTable) {
-          thisBooking.removeSelected();
-        }
-        idTable.classList.toggle(classNames.booking.tableSelected);
-      }
+    const clickedTable = event.target;
+    thisBooking.tableId = clickedTable.getAttribute(settings.booking.tableIdAttribute);
+    if (thisBooking.tableId) {
+      thisBooking.tableSelected = parseInt(thisBooking.tableId);
+    }
+    if (clickedTable.classList.contains(classNames.booking.table) &&
+      !clickedTable.classList.contains(classNames.booking.tableBooked)) {
+      clickedTable.classList.toggle(classNames.booking.tableSelected);
+    }
+
+    if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
+      this.Booking.removeSelected();
+
+      clickedTable.classList.add(classNames.booking.tableSelected);
+    } else if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
+      this.Booking.removeSelected();
+
     }
   }
 
@@ -180,7 +188,7 @@ class Booking {
       hour: thisBooking.hourPicker.value,
       people: thisBooking.peopleAmount,
       duration: thisBooking.hoursAmount,
-      table: thisBooking.selectedTable,
+      table: thisBooking.tableSelected,
       starters: [],
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
