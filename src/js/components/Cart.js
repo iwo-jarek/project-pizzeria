@@ -115,6 +115,7 @@ class Cart{
       body: JSON.stringify(payload),
     };
     fetch(url, options);
+    
   } 
 }
 export default Cart;

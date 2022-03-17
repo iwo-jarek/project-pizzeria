@@ -153,26 +153,27 @@ class Booking {
     const thisBooking = this;
 
     const clickedTable = event.target;
-    thisBooking.tableId = clickedTable.getAttribute(settings.booking.tableIdAttribute);
-    if (thisBooking.tableId) {
-      thisBooking.tableSelected = parseInt(thisBooking.tableId);
-    }
-    if (clickedTable.classList.contains(classNames.booking.table) &&
-      !clickedTable.classList.contains(classNames.booking.tableBooked)) {
+
+    if (clickedTable.classList.contains(classNames.booking.tableBooked)) {
+      //console.log('table is booked');
+      return;
+    } else if (clickedTable.classList.contains(classNames.booking.table)) {
+      thisBooking.removeSelected(clickedTable);
       clickedTable.classList.toggle(classNames.booking.tableSelected);
     }
-    if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
-      this.Booking.removeSelected();
-      clickedTable.classList.add(classNames.booking.tableSelected);
-    } else if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
-      this.Booking.removeSelected();
-    }
+    thisBooking.tableId = clickedTable.getAttribute(settings.booking.tableIdAttribute);
   }
 
-  removeSelected() {
+  removeSelected(clickedElement) {
     const thisBooking = this;
+    const clickedElementId = clickedElement.getAttribute(settings.booking.tableIdAttribute);
+
     for (let table of thisBooking.dom.tables) {
-      if (table.classList.contains(classNames.booking.tableSelected))
+      const tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      if(tableId === clickedElementId) {
+        console.log(tableId);
+      }
+      else if (table.classList.contains(classNames.booking.tableSelected))
         table.classList.remove(classNames.booking.tableSelected);
     }
   }
@@ -184,10 +185,9 @@ class Booking {
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      people: thisBooking.peopleAmount,
-      duration: thisBooking.hoursAmount,
+      people: thisBooking.peopleAmount.value,
+      duration: thisBooking.hoursAmount.value,
       table: thisBooking.tableSelected,
-
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
       starters: []
@@ -198,7 +198,6 @@ class Booking {
         payload.starters.push(starter.value);
       }
     }
-
     // for(let prod of thisCart.products) {
     //   payload.products.push(prod.getData());
     // }
@@ -257,8 +256,6 @@ class Booking {
       event.preventDefault();
       thisBooking.sendOrder();
     });
-
-
   }
 }
 
