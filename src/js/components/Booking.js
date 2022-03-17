@@ -11,6 +11,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+
   }
 
   getData() {
@@ -160,19 +161,12 @@ class Booking {
       !clickedTable.classList.contains(classNames.booking.tableBooked)) {
       clickedTable.classList.toggle(classNames.booking.tableSelected);
     }
-
     if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
       this.Booking.removeSelected();
-
       clickedTable.classList.add(classNames.booking.tableSelected);
     } else if (!clickedTable.classList.contains(classNames.booking.tableSelected) && !clickedTable.classList.contains(classNames.booking.tableBooked)) {
       this.Booking.removeSelected();
-
     }
-    thisBooking.dom.submitForm.addEventListener('click', function(event) {
-      event.preventDefault();
-      thisBooking.sendOrder();
-    });
   }
 
   removeSelected() {
@@ -193,22 +187,21 @@ class Booking {
       people: thisBooking.peopleAmount,
       duration: thisBooking.hoursAmount,
       table: thisBooking.tableSelected,
-      starters: [],
+
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
-
+      starters: []
     };
 
     for (let starter of thisBooking.dom.starters) {
-      if (starter.checked) {
+      if (starter.checked === true) {
         payload.starters.push(starter.value);
       }
     }
+
     // for(let prod of thisCart.products) {
     //   payload.products.push(prod.getData());
     // }
-
-    thisBooking.makeBooked(payload.data, payload.hour, payload.duration, payload.table);
     const options = {
       method: 'POST',
       headers: {
@@ -216,7 +209,14 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
-    fetch(url, options);
+    fetch(url, options)
+      .then(function (rawResponse) {
+        return rawResponse.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parseResponse', parsedResponse);
+        thisBooking.makeBooked(payload.data, payload.hour, payload.duration, payload.table);
+      });
   }
 
   render(element) {
@@ -233,7 +233,7 @@ class Booking {
     thisBooking.dom.floorPlan = element.querySelector(select.booking.floorPlan);
     thisBooking.dom.form = element.querySelector(select.booking.form);
     thisBooking.dom.submitForm = element.querySelector(select.booking.submitForm);
-    thisBooking.dom.starter = element.querySelector(select.booking.starters);
+    thisBooking.dom.starters = element.querySelectorAll(select.booking.starters);
     thisBooking.dom.phone = element.querySelector(select.booking.phone);
     thisBooking.dom.address = element.querySelector(select.booking.address);
   }
@@ -253,7 +253,12 @@ class Booking {
     thisBooking.dom.floorPlan.addEventListener('click', function (event) {
       thisBooking.initTables(event);
     });
-    
+    thisBooking.dom.submitForm.addEventListener('click', function (event) {
+      event.preventDefault();
+      thisBooking.sendOrder();
+    });
+
+
   }
 }
 

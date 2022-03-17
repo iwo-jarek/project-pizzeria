@@ -47,7 +47,7 @@ export const select = {
     floorPlan: '.floor-plan',
     form: '.booking-form',
     submitForm: '.booking-form [type="submit"]',
-    starters: '[name="starter"]',
+    starters: '.checkbox [name="starter"]',
     phone: '[name="phone"]',
     address: '[name="address"]',
   },
