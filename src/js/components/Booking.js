@@ -11,7 +11,6 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-
   }
 
   getData() {
@@ -168,7 +167,7 @@ class Booking {
 
     for (let table of thisBooking.dom.tables) {
       const tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      if(tableId === clickedElementId) {
+      if (tableId === clickedElementId) {
         console.log(tableId);
       }
       else if (table.classList.contains(classNames.booking.tableSelected))

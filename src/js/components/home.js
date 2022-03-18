@@ -1,12 +1,10 @@
-//import { render } from "sass";
 import { select, templates } from '../settings.js';
-
 
 class Home {
     constructor(element) {
         const thisHome = this;
         thisHome.render(element);
-        thisHome.cickedPage();
+        thisHome.clickedPage();
     }
 
     render(element) {
@@ -21,7 +19,6 @@ class Home {
 
     clickedPage() {
         const thisHome = this;
-        
 
     }
 

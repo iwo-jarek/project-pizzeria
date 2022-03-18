@@ -53,10 +53,10 @@ export const select = {
     address: '[name="address"]',
   },
 
-  home: {
-    order: '.order-online',
-    book: '.booking-online',
-  },
+  // home: {
+  //   order: '.order-online',
+  //   book: '.booking-online',
+  // },
 
   nav: {
     links: '.main-nav a',
@@ -142,5 +142,4 @@ export const templates = {
   menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
   bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
-  homeWidget: Handlebars.compile(document.querySelector(select.templateOf.homeWidget).innerHTML),
 };
