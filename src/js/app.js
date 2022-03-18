@@ -3,7 +3,7 @@ import { settings, select, classNames } from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
-import Home from './components/home.js';
+//import Home from './components/home.js';
 
 const app = {
   initPages: function () {
@@ -99,12 +99,12 @@ const app = {
     thisApp.booking = new Booking(bookingWidget);
   },
 
-  initHome: function () {
-    const thisApp = this;
+  // initHome: function () {
+  //   const thisApp = this;
 
-    const homeWidget = document.querySelector(select.containerOf.home);
-    thisApp.booking = new Home(homeWidget);
-  },
+  //   const homeWidget = document.querySelector(select.containerOf.home);
+  //   thisApp.booking = new Home(homeWidget);
+  // },
 
   init: function () {
     const thisApp = this;
@@ -118,34 +118,3 @@ const app = {
 
 app.init();
 
-
-
-// //import { render } from "sass";
-// import { select, templates } from '../settings.js';
-
-
-// class Home {
-//     constructor(element) {
-//         const thisHome = this;
-//         thisHome.render(element);
-//         thisHome.cickedPage();
-//     }
-
-//     render(element) {
-//         const thisHome = this;
-//         const generatedHTML = templates.homeWidget();
-//         thisHome.dom = {};
-//         thisHome.dom.wrapper = element;
-//         thisHome.dom.wrapper.innerHTML = generatedHTML;
-//         thisHome.dom.order = element.querySelector(select.home.order);
-//         thisHome.dom.book = element.querySelector(select.home.book);
-//     }
-
-//     clickedPage() {
-//         const thisHome = this;
-
-
-//     }
-
-// }
-// export default Home;
