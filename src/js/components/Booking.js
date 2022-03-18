@@ -151,9 +151,7 @@ class Booking {
 
   initTables(event) {
     const thisBooking = this;
-
     const clickedTable = event.target;
-
     if (clickedTable.classList.contains(classNames.booking.tableBooked)) {
       //console.log('table is booked');
       return;
