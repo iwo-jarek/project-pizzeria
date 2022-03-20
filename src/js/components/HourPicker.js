@@ -1,10 +1,10 @@
 import BaseWidget from './BaseWidget.js';
-import {utils} from '../utils.js';
-import {select, settings} from '../settings.js';
+import { utils } from '../utils.js';
+import { select, settings } from '../settings.js';
 
 
-class HourPicker extends BaseWidget{
-  constructor(wrapper){
+class HourPicker extends BaseWidget {
+  constructor(wrapper) {
     super(wrapper, settings.hours.open);
     const thisWidget = this;
 
@@ -14,24 +14,24 @@ class HourPicker extends BaseWidget{
     thisWidget.value = thisWidget.dom.input.value;
   }
 
-  initPlugin(){
+  initPlugin() {
     const thisWidget = this;
     // eslint-disable-next-line no-undef
     rangeSlider.create(thisWidget.dom.input);
-    thisWidget.dom.input.addEventListener('input', function(){
+    thisWidget.dom.input.addEventListener('input', function () {
       thisWidget.value = thisWidget.dom.input.value;
     });
   }
 
-  parseValue(value){
+  parseValue(value) {
     return utils.numberToHour(value);
   }
 
-  isValid(){
+  isValid() {
     return true;
   }
 
-  renderValue(){
+  renderValue() {
     const thisWidget = this;
 
     thisWidget.dom.output.innerHTML = thisWidget.value;

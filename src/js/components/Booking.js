@@ -128,7 +128,6 @@ class Booking {
     ) {
       allAvailable = true;
     }
-
     for (let table of thisBooking.dom.tables) {
       let tableId = table.getAttribute(settings.booking.tableIdAttribute);
 
@@ -139,9 +138,10 @@ class Booking {
       if (
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) 
       ) {
         table.classList.add(classNames.booking.tableBooked);
+        table.classList.remove(classNames.booking.tableSelected);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
@@ -151,12 +151,17 @@ class Booking {
   initTables(event) {
     const thisBooking = this;
     const clickedTable = event.target;
+
     if (clickedTable.classList.contains(classNames.booking.tableBooked)) {
-      //console.log('table is booked');
+      console.log('table is booked');
       return;
     } else if (clickedTable.classList.contains(classNames.booking.table)) {
+      if (!clickedTable.classList.contains(classNames.booking.tableSelected)) {
+        thisBooking.tableNumber = clickedTable.getAttribute(settings.booking.tableIdAttribute); 
+      }
       thisBooking.removeSelected(clickedTable);
       clickedTable.classList.toggle(classNames.booking.tableSelected);
+     
     }
     thisBooking.tableId = clickedTable.getAttribute(settings.booking.tableIdAttribute);
   }
@@ -179,12 +184,13 @@ class Booking {
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.bookings;
 
+
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
       people: thisBooking.peopleAmount.value,
       duration: thisBooking.hoursAmount.value,
-      table: thisBooking.tableSelected,
+      table: parseInt(thisBooking.tableNumber),
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
       starters: []
@@ -193,11 +199,14 @@ class Booking {
     for (let starter of thisBooking.dom.starters) {
       if (starter.checked === true) {
         payload.starters.push(starter.value);
+        if (starter.value === 'bread' && !payload.starters.includes('water')) {
+          payload.starters.push('water');
+        }
+
       }
     }
-    // for(let prod of thisCart.products) {
-    //   payload.products.push(prod.getData());
-    // }
+
+
     const options = {
       method: 'POST',
       headers: {
@@ -211,7 +220,8 @@ class Booking {
       })
       .then(function (parsedResponse) {
         console.log('parseResponse', parsedResponse);
-        thisBooking.makeBooked(payload.data, payload.hour, payload.duration, payload.table);
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.updateDOM();
       });
   }
 
