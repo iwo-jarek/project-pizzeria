@@ -202,7 +202,6 @@ class Booking {
         if (starter.value === 'bread' && !payload.starters.includes('water')) {
           payload.starters.push('water');
         }
-
       }
     }
 
