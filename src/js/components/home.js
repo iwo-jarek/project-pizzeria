@@ -4,7 +4,6 @@ class Home {
   constructor(element) {
     const thisHome = this;
     thisHome.render(element);
-    thisHome.clickedPage();
     thisHome.initLink();
   }
 
@@ -20,30 +19,32 @@ class Home {
     const thisHome = this;
     thisHome.pages = document.querySelector(select.containerOf.pages).children;
     thisHome.navLinks = document.querySelectorAll(select.nav.links);
+
     for (let page of thisHome.pages) {
       page.classList.toggle(classNames.pages.active, page.id == pageId);
-    }
-    for (let link of thisHome.navLinks) {
-      link.classList.toggle(
-        classNames.nav.active,
-        link.getAttribute('href') == '#/' + pageId
-      );
+      for (let link of thisHome.navLinks) {
+        link.classList.toggle(
+          classNames.nav.active,
+          link.getAttribute('href') == '#/' + pageId
+        );
+      }
     }
   }
 
-  initLink(){
+  initLink() {
     const thisHome = this;
-    for (let link of thisHome.navLinks) {
-      link.addEventListener('click', function(event) {
-        const clickedLink = this;
-        event.preventDefault();
+    thisHome.links = document.querySelectorAll('.link');
 
+    for (let link of thisHome.links) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const clickedLink = this;
         /* get page id from href attribute */
-        const LinkId = clickedLink.getAttribute('href').replace('#', '');
+        const idLink = clickedLink.getAttribute('href').replace('#', '');
         /* run thisHome.clickedPage with that id */
-        thisHome.clickedPage(LinkId);
+        thisHome.clickedPage(idLink);
       });
     }
-  }  
+  }
 }
 export default Home;

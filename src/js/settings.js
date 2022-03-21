@@ -55,7 +55,7 @@ export const select = {
 
   home: {
     order: '.order-online',
-    book: '.booking-online',
+    book: '.book-table',
   },
 
   nav: {

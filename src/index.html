@@ -9,14 +9,13 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
     rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="/path/to/flickity.css" media="screen">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
@@ -65,7 +64,6 @@
       </div>
     </div>
   </header>
-
   <div id="pages">
     <section id="home">
       <div class="home-wrapper container"></div>
@@ -79,57 +77,51 @@
   </div>
   <script id="template-home-widget" type="text/x-handlebars-template">
     <div class="home-widget"> 
-      <div class="row">
-        <div href="#order" class="col-md-6">
-            <div class="card mb-3 d-flex justify-content-center align-items-center">
-                <img src="images/home/pizza-1.jpg">
-                <div class="card-body position-absolute">
-                  <h1>ORDER ONLINE</h1>
-                  <P>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </P>   
-                </div>   
-            </div>
+      <div class="row-one">
+        <div class="order-online">
+          <div class="text-online">
+            <a class="link" href="#order">
+              <h1>ORDER ONLINE</h1>
+              <P>Lorem ipsum dolor sit amet.</P>
+            </a>
+          </div>
+          <img class="order-image" src="images/home/pizza-1.jpg">
         </div>
-        <div href="#booking" class="col-md-6">
-          <div class="card mb-3 d-flex justify-content-center align-items-center">
-            <img src="images/home/pizza-2.jpg">
-            <div class="card-body position-absolute">
+        <div class="book-table">
+          <div class="text-online">
+            <a class="link" href="#booking">
               <h1>BOOK A TABLE</h1>
-              <P>"Lorem ipsum dolor sit amet, consectetur adipiscing elit"</P>
-            </div>
+              <P>Lorem ipsum dolor sit amet. </P>
+            </a>
           </div>
+          <img class="order-image" src="images/home/pizza-2.jpg">
         </div>
-            <div class="col">
-                <div class="card mb-3 d-flex justify-content-center align-items-center">
-                    <div class="card-body position-absolute">
-                        <h1>OPENING HOURS</h1>
-                    </div>
-                </div>
-            </div>
-          </div>
+      </div>
+      <div class="open-hours">
+        <h1>OPENING HOURS</h1>
+        <h4>10:00-22:00</h4>
+      </div>
       <div id="main-slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img class="w-100" src= "images/home/pizza-5.jpg" alt="image">
+                <img class="w-50" src= "images/home/pizza-4.jpg" alt="image">
                 <div class="carousel-caption">
-                    <h4>Graet food</h4>
-                    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
-                    
+                    <h4>great food</h4>
+                    <h3>"Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."</h3> 
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="w-100" src="images/home/pizza-4.jpg" alt="image">
+                <img class="w-50" src="images/home/pizza-3.jpg" alt="image">
                 <div class="carousel-caption">
-                    <h4>Tasty</h4>
-                    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
-                   
+                    <h4>great service</h4>
+                    <h3>"Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."</h3>   
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="w-100" src="images/home/pizza-3.jpg" alt="image">
+                <img class="w-50" src="images/home/pizza-2.jpg" alt="image">
                 <div class="carousel-caption">
-                    <h4>Delicious</h4>
-                    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h3>
-                   
+                    <h4>beautiful interiors</h4>
+                    <h3>"Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."</h3>
                 </div>
             </div>
         </div>
@@ -142,14 +134,11 @@
             <span class="sr-only">Next</span>
         </a>
       </div>
-    </div>
-    <div class="gallery">
       
-
+      <footer>
+        <a href="#">View more on Instagram</a>    
+      </footer>
     </div>
-    <footer>
-      <a href="#">View more on Instagram</a>    
-    </footer>
   </script>
   <script id="template-cart-product" type="text/x-handlebars-template">
       <li>
