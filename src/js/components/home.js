@@ -37,7 +37,6 @@ class Home {
     const element = document.querySelector('.main-carousel');
 
     new Flickity(element,{
-      autoPlay: true,
       wrapAround: true,
       prevNextButtons: false
     });
