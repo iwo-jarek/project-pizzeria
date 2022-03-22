@@ -1,9 +1,11 @@
+/*global Flickity*/
 import { select, templates, classNames } from '../settings.js';
 
 class Home {
   constructor(element) {
     const thisHome = this;
     thisHome.render(element);
+    this.initWidget();
     thisHome.initLink();
   }
 
@@ -29,6 +31,16 @@ class Home {
         );
       }
     }
+  }
+
+  initWidget(){
+    const element = document.querySelector('.main-carousel');
+
+    new Flickity(element,{
+      autoPlay: true,
+      wrapAround: true,
+      prevNextButtons: false
+    });
   }
 
   initLink() {

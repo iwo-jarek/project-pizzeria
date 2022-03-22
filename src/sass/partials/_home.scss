@@ -1,4 +1,4 @@
-.home-widget {
+.home-wrapper {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 30px;
@@ -6,37 +6,44 @@
   margin: 0 auto;
 }
 
+.home-widget {
+  padding: ($base-size * 5) ($base-size * 4);
+}
+
 .row-one {
   display: flex;
-}
+  justify-content: center;
 
-.text-online {
-  position: absolute;
-  text-align: center;
-  margin: 0 65px;
-  z-index: 10; 
-}
+  .text-online {
+    position: absolute;
+    text-align: center;
+    margin: 0 65px;
+    z-index: 10; 
+  }
 
-.link {
-  text-decoration: none;
-  color: $color-light;
-}
+  .link {
+    text-decoration: none;
+    color: $color-light;
+  }
 
-.order-image {
-  position: relative;
-  object-fit: cover;
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 300px;
-  height: 140px;
-  z-index: 5;
-  
+  .order-image {
+    position: relative;
+    object-fit: cover;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 300px;
+    height: 140px;
+    z-index: 5; 
+  }
 }
 
 .open-hours {
   position: relative;
   object-fit: cover;
+  justify-content: center;
   background-color: aquamarine;
+  margin-left: 100px;
+  margin-bottom: 10px;
   width: 600px;
   height: 100px;
 
@@ -48,5 +55,66 @@
 
   h4 {
     text-align: center;
+  }
+}
+  
+//carousel
+
+.carousel {
+  padding: ($base-size * 5) 0 ($base-size * 8) 0;
+  width: 100%;
+  background-color: $color-light;
+}
+
+//gallery
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+ 
+  .gallery-box {
+    display: flex;
+
+    .gallery-icon {
+      position: absolute;
+      font-size: 50px;
+      
+      li {
+        display: flex;
+        color: crimson;
+        margin-top: -100px;
+        visibility: hidden;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      width: 200px;
+      height: 200px;
+      margin: 7px;
+    }
+  }
+
+  .gallery-item {
+    &:hover {
+      a {
+        visibility: visible;
+        color: rgb(211, 168, 168);
+      }
+    }
+  }
+}
+
+footer {
+  a {
+    text-decoration: none;
+    margin-left: 20px;
+  }
+
+  .footer {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
   }
 }
