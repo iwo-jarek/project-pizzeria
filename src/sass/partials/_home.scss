@@ -38,23 +38,17 @@
 }
 
 .open-hours {
-  position: relative;
-  object-fit: cover;
-  justify-content: center;
-  background-color: aquamarine;
-  margin-bottom: 10px;
-  margin-left: 30px;
-  width: 600px;
-  height: 100px;
-
+    height: 85px;
+    max-width: 650px;
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+    margin-bottom: 10px;
+ 
   h1 {
     margin-top: 10px;
     padding-top: 10px;
-    text-align: center;
-  }
-
-  h4 {
-    text-align: center;
+    
   }
 }
  
