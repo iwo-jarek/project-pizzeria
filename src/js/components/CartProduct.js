@@ -1,8 +1,8 @@
-import {select} from '../settings.js';
+import { select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
-class CartProduct{
-  constructor(menuProduct, element){
+class CartProduct {
+  constructor(menuProduct, element) {
     const thisCartProduct = this;
     console.log(menuProduct);
     thisCartProduct.id = menuProduct.id;
@@ -11,13 +11,13 @@ class CartProduct{
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.price = menuProduct.price;
     thisCartProduct.params = menuProduct.params;
-    thisCartProduct.getElements(element);   
+    thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
     // console.log(cartProduct);
   }
 
-  getElements(element){
+  getElements(element) {
     const thisCartProduct = this;
     thisCartProduct.dom = {};
     thisCartProduct.dom.wrapper = element;
@@ -26,9 +26,9 @@ class CartProduct{
     thisCartProduct.dom.edit = element.querySelector(select.cartProduct.edit);
     thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
     //console.log('this Product', thisCartProduct);
-  } 
-     
-  getData(){
+  }
+
+  getData() {
     const thisCartProduct = this;
     const newObject = {
       id: thisCartProduct.id,
@@ -41,18 +41,18 @@ class CartProduct{
     return newObject;
   }
 
-  initAmountWidget(){
+  initAmountWidget() {
     const thisCartProduct = this;
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
-    thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
+    thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
 
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amountWidget.value;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
   }
-    
-  remove(){
+
+  remove() {
     const thisCartProduct = this;
 
     const event = new CustomEvent('remove', {
@@ -63,17 +63,17 @@ class CartProduct{
     });
     thisCartProduct.dom.wrapper.dispatchEvent(event);
   }
-    
-  initActions(){
-    const  thisCart = this;
-    thisCart.dom.edit.addEventListener('click', function(event){
+
+  initActions() {
+    const thisCart = this;
+    thisCart.dom.edit.addEventListener('click', function (event) {
       event.preventDefault();
     });
-    thisCart.dom.remove.addEventListener('click', function(event){
+    thisCart.dom.remove.addEventListener('click', function (event) {
       event.preventDefault();
       thisCart.remove();
     });
-  }  
+  }
 }
 
 export default CartProduct;
